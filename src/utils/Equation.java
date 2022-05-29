@@ -1,18 +1,23 @@
 package utils;
 
-import java.util.regex.*;
+import java.io.Serializable;
 
-public class Equation implements Calculate {
+public class Equation implements Calculate, Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String equation;
 	private int length;
 	private int numberOfOperators;
 	
 	public Equation(String equation, int length, int numberOfOperators) {
-		super();
 		this.equation = equation;
 		this.length = length;
 		this.numberOfOperators = numberOfOperators;
 	}
+	
+	public String getEquation() { return this.equation; }
+	public int getLength() { return this.length; }
+	public int getOperatorAmount() { return this.numberOfOperators; }
 
 	public int calculate() {
 		System.out.println(equation);

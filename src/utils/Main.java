@@ -11,7 +11,7 @@ public class Main {
 
 		Equation eq = new Equation(nextEq, 8, 3);
 		
-		// 7+9/3=10
+		// 
 		
 		eq.calculate();
 	}
