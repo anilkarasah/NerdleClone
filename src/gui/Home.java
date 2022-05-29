@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,26 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import utils.Equation;
 
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.awt.event.ActionEvent;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	
+	private CardLayout cardLayout;
 	private JPanel contentPane;
-	private static Equation equation;
+	private StatisticsUI stats;
+	private GameUI game;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -42,19 +39,24 @@ public class Home extends JFrame {
 	}
 	
 	public static void openStatisticsPane() {
-		JFrame frame = new JFrame();
-		JOptionPane.showMessageDialog(frame, equation.getEquation());
+		StatisticsUI statsPanel = new StatisticsUI();
+		statsPanel.setVisible(true);
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Home() {
+	//	cardLayout = new CardLayout();
+		contentPane = new JPanel();
+	//	stats = new StatisticsUI();
+	//	game = new GameUI();
+	//	contentPane.add(stats, "stats");
+	//	contentPane.add(game, "game");
 		
 		setTitle("Nerdle");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
-		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -75,7 +77,7 @@ public class Home extends JFrame {
 		btnStart.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Game screen = new Game(equation);
+				GameUI screen = new GameUI();
 				screen.setVisible(true);
 			}
 		});
@@ -86,20 +88,6 @@ public class Home extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		ObjectInputStream input;
-		try {
-			input = new ObjectInputStream(new FileInputStream("previousGame.txt"));
-			btnContinue.setVisible(true);
-			equation = (Equation) input.readObject();
-			input.close();
-		} catch (IOException e) {
-			System.out.println("previousGame.txt: Dosya bulunamadý.");
-			btnContinue.setVisible(false);
-		} catch (ClassNotFoundException e) {
-			System.out.println("Equation sýnýfý bulunamadý.");
-			btnContinue.setVisible(false);
-		}
 		
 		btnContinue.setBounds(97, 170, 240, 40);
 		contentPane.add(btnContinue);

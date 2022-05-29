@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Insets;
 
-public class Game extends JFrame {
+public class GameUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -37,8 +37,8 @@ public class Game extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Game(Equation eq) {
-		equation = eq;
+	public GameUI() {
+		equation = new Equation();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 425, 500);
 		contentPane = new JPanel();
