@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.CardLayout;
+//import java.awt.CardLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,10 +17,10 @@ import java.awt.event.ActionEvent;
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	private CardLayout cardLayout;
+//	private CardLayout cardLayout;
 	private JPanel contentPane;
-	private StatisticsUI stats;
-	private GameUI game;
+//	private StatisticsUI stats;
+//	private GameUI game;
 
 	/**
 	 * Launch the application.
