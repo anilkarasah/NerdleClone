@@ -10,18 +10,9 @@ public class Equation implements Serializable {
 	private int length;
 	private int numberOfOperators;
 	
-	public static void main(String[] args) {
-		Equation e = new Equation();
-		String temp;
-		System.out.println("Uzunluk: " + e.getLength());
-		temp = e.generateEquation("");
-		System.out.println(temp);
-	}
-	
 	public Equation() {
 		Random random = new Random();
-		int r = 9 - 7 + 1;
-		length = random.nextInt(r) + 7;
+		length = random.nextInt(3) + 7;
 	}
 	
 	public String getEquation() { return this.equation; }
@@ -56,16 +47,18 @@ public class Equation implements Serializable {
 			temp = current + "=" + Calculate.calculate(current);
 		} while (temp.length() < this.length);
 		
-		if (temp.length() != this.length)
+		if (temp.length() != this.length || Calculate.calculate(current) < 0)
 			return generateEquation("");
 		
 		return temp;
 	}
 	
 	public int validDivider(int numerator) {
-		Integer[] dividers = new Integer[numerator];
-		int next = 0;
-		for (int i = 1; i <= numerator; i++) {
+		Integer[] dividers = new Integer[numerator + 1];
+		dividers[0] = 1;
+		int next = 1;
+		for (int i = 2; i <= numerator; i++) {
+			// Check if the numerator is divisible by 'i' without carry
 			if (numerator / i == (double)numerator / i) {
 				dividers[next++] = i;
 			}

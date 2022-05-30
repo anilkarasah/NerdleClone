@@ -93,6 +93,12 @@ public class Home extends JFrame {
 		contentPane.add(btnContinue);
 		
 		JButton btnTest = new JButton("Test");
+		btnTest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TestUI testui = new TestUI();
+				testui.setVisible(true);
+			}
+		});
 		btnTest.setBounds(97, 220, 240, 40);
 		contentPane.add(btnTest);
 		
