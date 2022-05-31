@@ -60,7 +60,8 @@ public class Calculate {
 		return 0;
 	}
 	
-	public static String parseEquation(String e) {
-		return e.split("=")[0];
+	public static boolean isEquationValid(String eq) {
+		String sidesOfEquals[] = eq.split("=");
+		return Integer.parseInt(sidesOfEquals[1]) != Calculate.calculate(sidesOfEquals[0]);
 	}
 }

@@ -37,8 +37,8 @@ public class WinUI extends JFrame {
 		JButton btnMainMenu = new JButton("Ana Men\u00FCye D\u00F6n");
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeUI.win.setVisible(false);
-				HomeUI.home.setVisible(true);
+				HomeUI.hideWin();
+				HomeUI.showHome();
 			}
 		});
 		btnMainMenu.setBounds(75, 200, 150, 40);

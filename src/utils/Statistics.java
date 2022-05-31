@@ -2,10 +2,9 @@ package utils;
 
 import java.io.*;
 
-public class Statistics implements FileIO,Serializable {
+public class Statistics implements Serializable, SaveToFile {
 	private static final long serialVersionUID = 1L;
-	private static final String statisticsFilePath = "stats.txt";
-	private static final SaveDirectory dir = new SaveDirectory(statisticsFilePath);
+	private static final String filePath = "stats.txt";
 	
 	private int won;
 	private int lost;
@@ -14,22 +13,32 @@ public class Statistics implements FileIO,Serializable {
 	private int avgFinishTime;
 	
 	public Statistics() {
-		this.won = this.lost = this.left = this.avgGuesses = this.setAvgFinishTime(0);
-	}
-
-	public Statistics(int won, int lost, int left, int avgGuesses, int avgFinishTime) {
-		super();
-		this.won = won;
-		this.lost = lost;
-		this.left = left;
-		this.avgGuesses = avgGuesses;
-		this.setAvgFinishTime(avgFinishTime);
+		File file = new File(filePath);
+		try {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
+			Statistics s;
+			s = (Statistics)input.readObject();
+			input.close();
+			this.won = s.won;
+			this.lost = s.lost;
+			this.left = s.left;
+			this.avgGuesses = s.avgGuesses;
+			this.avgFinishTime = s.avgFinishTime;
+		} catch (IOException e) {
+			this.won = this.lost = this.left = this.avgGuesses = this.avgFinishTime = 0;
+		} catch (ClassNotFoundException e) {
+			System.out.println("Statistics sýnýfý bulunamadý.");
+			e.printStackTrace();
+			System.exit(0);
+		}
 	}
 
 	@Override
 	public void saveToFile() {
+		File file = new File(filePath);
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dir.getPath()));
+			file.createNewFile();
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
 			out.writeObject(this);
 			out.close();
 		} catch (Exception e) {
@@ -37,62 +46,15 @@ public class Statistics implements FileIO,Serializable {
 		}
 	}
 
-	@Override
-	public Statistics readFromFile() throws Exception {
-		Statistics s = null;
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(dir.getPath()));
-			s = (Statistics) in.readObject();
-			in.close();
-		} catch (ClassNotFoundException e) {
-			System.out.println("Class bulunamadý.");
-			System.exit(-1);
-		} catch (Exception e) {
-			throw new Exception("Dosya iþleminde problem oluþtu.");
-		}
-		return s;
-	}
-	
-	
+	public int getWon() { return won; }
+	public int getLost() { return lost; }
+	public int getLeft() { return left; }
+	public int getAvgGuesses() { return avgGuesses; }
+	public int getAvgFinishTime() { return avgFinishTime; }
 
-	public int getWon() {
-		return won;
-	}
-
-	public void setWon(int won) {
-		this.won = won;
-	}
-
-	public int getLost() {
-		return lost;
-	}
-
-	public void setLost(int lost) {
-		this.lost = lost;
-	}
-
-	public int getLeft() {
-		return left;
-	}
-
-	public void setLeft(int left) {
-		this.left = left;
-	}
-
-	public int getAvgGuesses() {
-		return avgGuesses;
-	}
-
-	public void setAvgGuesses(int avgGuesses) {
-		this.avgGuesses = avgGuesses;
-	}
-
-	public int getAvgFinishTime() {
-		return avgFinishTime;
-	}
-
-	public int setAvgFinishTime(int avgFinishTime) {
-		this.avgFinishTime = avgFinishTime;
-		return avgFinishTime;
-	}
+	public void setWon(int won) { this.won = won; }
+	public void setLost(int lost) { this.lost = lost; }
+	public void setLeft(int left) { this.left = left; }
+	public void setAvgGuesses(int avgGuesses) { this.avgGuesses = avgGuesses; }
+	public void setAvgFinishTime(int avgFinishTime) { this.avgFinishTime = avgFinishTime; }
 }

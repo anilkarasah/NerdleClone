@@ -40,10 +40,6 @@ public class TestUI extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TestUI() {
 		Equation eq = new Equation();
 		
@@ -86,8 +82,8 @@ public class TestUI extends JFrame {
 		JButton btnGoBack = new JButton("Geri D\u00F6n");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeUI.home.setVisible(true);
-				HomeUI.test.setVisible(false);
+				HomeUI.showHome();
+				HomeUI.hideTest();
 			}
 		});
 		btnGoBack.setBounds(140, 200, 150, 30);

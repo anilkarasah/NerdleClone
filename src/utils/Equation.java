@@ -22,6 +22,8 @@ public class Equation implements Serializable {
 		this.equation = guess;
 		this.length = length;
 		correctness = new int[length];
+		for (int i = 0; i < length; i++)
+			correctness[i] = 0;
 	}
 	
 	public String getEquation() { return this.equation; }
