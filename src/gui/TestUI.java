@@ -48,7 +48,7 @@ public class TestUI extends JFrame {
 		Equation eq = new Equation();
 		
 		setTitle("Test Ekran\u0131");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,6 +84,12 @@ public class TestUI extends JFrame {
 		contentPane.add(btnRegenerate);
 		
 		JButton btnGoBack = new JButton("Geri D\u00F6n");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomeUI.home.setVisible(true);
+				HomeUI.test.setVisible(false);
+			}
+		});
 		btnGoBack.setBounds(140, 200, 150, 30);
 		contentPane.add(btnGoBack);
 	}

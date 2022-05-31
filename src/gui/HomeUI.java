@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import utils.Statistics;
+
+//import utils.Statistics;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -14,23 +19,27 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Home extends JFrame {
+public class HomeUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-//	private CardLayout cardLayout;
 	private JPanel contentPane;
-//	private StatisticsUI stats;
-//	private GameUI game;
+	private static Statistics stats;
+	
+	public static HomeUI home;
+	public static GameUI game;
+	public static StatisticsUI statistics;
+	public static WinUI win;
+	public static LoseUI lose;
+	public static TestUI test;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home frame = new Home();
-					frame.setVisible(true);
+					home = new HomeUI();
+					home.setVisible(true);
+					
+					stats = stats.readFromFile();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,19 +52,24 @@ public class Home extends JFrame {
 		statsPanel.setVisible(true);
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Home() {
-	//	cardLayout = new CardLayout();
+	public HomeUI() {
 		contentPane = new JPanel();
-	//	stats = new StatisticsUI();
-	//	game = new GameUI();
-	//	contentPane.add(stats, "stats");
-	//	contentPane.add(game, "game");
+		
+		game = new GameUI();
+		game.setVisible(false);
+		statistics = new StatisticsUI();
+		statistics.setVisible(false);
+		win = new WinUI();
+		win.setVisible(false);
+		lose = new LoseUI();
+		lose.setVisible(false);
+		test = new TestUI();
+		test.setVisible(false);
+		
+		stats = new Statistics();
 		
 		setTitle("Nerdle");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,8 +91,8 @@ public class Home extends JFrame {
 		btnStart.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameUI screen = new GameUI();
-				screen.setVisible(true);
+				game.setVisible(true);
+				home.setVisible(false);
 			}
 		});
 		contentPane.add(btnStart);
@@ -95,8 +109,8 @@ public class Home extends JFrame {
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TestUI testui = new TestUI();
-				testui.setVisible(true);
+				test.setVisible(true);
+				home.setVisible(false);
 			}
 		});
 		btnTest.setBounds(97, 220, 240, 40);
