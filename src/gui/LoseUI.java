@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,26 +15,7 @@ public class LoseUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoseUI frame = new LoseUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public LoseUI() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 316, 300);
@@ -59,14 +39,6 @@ public class LoseUI extends JFrame {
 		});
 		btnMainMenu.setBounds(75, 200, 150, 40);
 		contentPane.add(btnMainMenu);
-		
-		JLabel labelNOGuess = new JLabel("New label");
-		labelNOGuess.setBounds(90, 120, 100, 30);
-		contentPane.add(labelNOGuess);
-		
-		JLabel labelTimer = new JLabel("New label");
-		labelTimer.setBounds(90, 150, 100, 30);
-		contentPane.add(labelTimer);
 	}
 
 }

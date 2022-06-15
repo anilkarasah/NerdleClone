@@ -54,12 +54,12 @@ public class StatisticsUI extends JFrame {
 		lblLostGames.setBounds(10, 80, 280, 20);
 		contentPane.add(lblLostGames);
 		
-		JLabel lblAvgGuess = new JLabel("Ortalama tahmin: " + s.getAvgGuesses());
+		JLabel lblAvgGuess = new JLabel("Ortalama tahmin: " + s.getAvgFinishTime());
 		lblAvgGuess.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAvgGuess.setBounds(10, 110, 280, 20);
 		contentPane.add(lblAvgGuess);
 		
-		JLabel lblAvgTime = new JLabel("Ortalama tahmin: " + s.getAvgFinishTime());
+		JLabel lblAvgTime = new JLabel("Ortalama tahmin: " + s.getAvgGuesses());
 		lblAvgTime.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAvgTime.setBounds(10, 140, 280, 20);
 		contentPane.add(lblAvgTime);

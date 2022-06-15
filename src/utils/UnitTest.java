@@ -43,6 +43,6 @@ class UnitTest {
 	void startsWithOperator() {
 		char[] eq = equation.toCharArray();
 		
-		assertEquals(true, (eq[0] != '+' || eq[0] != '-' || eq[0] != '*' || eq[0] != '/'));
+		assertEquals(true, (eq[0] != '+' || eq[0] != '-' || eq[0] != '*' || eq[0] != '/' || eq[0] != '='));
 	}
 }

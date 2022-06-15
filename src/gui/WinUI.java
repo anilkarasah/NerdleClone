@@ -16,9 +16,6 @@ public class WinUI extends JFrame {
 	
 	private JPanel contentPane;
 
-	/**
-	 * Create the frame.
-	 */
 	public WinUI() {
 		setTitle("Kazand\u0131n\u0131z");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -43,14 +40,6 @@ public class WinUI extends JFrame {
 		});
 		btnMainMenu.setBounds(75, 200, 150, 40);
 		contentPane.add(btnMainMenu);
-		
-		JLabel labelNOGuess = new JLabel("New label");
-		labelNOGuess.setBounds(90, 120, 100, 30);
-		contentPane.add(labelNOGuess);
-		
-		JLabel labelTimer = new JLabel("New label");
-		labelTimer.setBounds(90, 150, 100, 30);
-		contentPane.add(labelTimer);
 	}
 
 }

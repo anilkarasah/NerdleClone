@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class GameUI extends JFrame implements Serializable {
 		currentRow = 0;
 		equation = new Equation();
 		equation.setEquation(equation.generateEquation(""));
+		System.out.println(equation.getEquation());
 		guess = new Character[equation.getLength()];
 		guesses = new Equation[6];
 		int panelWidth = (buttonWidth * equation.getLength()) + (buttonGap * (equation.getLength() + 2));
@@ -324,7 +326,17 @@ public class GameUI extends JFrame implements Serializable {
 					
 					Statistics s = HomeUI.getStats();
 					s.setWon(s.getWon() + 1);
+					if (s.getWon() == 0)
+						s.setAvgGuesses((double) currentRow);
+					else
+						s.setAvgGuesses(((double)currentRow + s.getAvgGuesses()) / s.getWon());
+					Random r = new Random();
+					s.setAvgFinishTime(r.nextInt(60));
 					HomeUI.setStats(s);
+					
+					s.saveToFile();
+					
+					return;
 				}
 				
 				if (currentRow == 5) {
@@ -336,6 +348,10 @@ public class GameUI extends JFrame implements Serializable {
 					Statistics s = HomeUI.getStats();
 					s.setLost(s.getLost() + 1);
 					HomeUI.setStats(s);
+					
+					s.saveToFile();
+					
+					return;
 				}
 				
 				cursor = -1;
@@ -362,6 +378,8 @@ public class GameUI extends JFrame implements Serializable {
 				Statistics s = HomeUI.getStats();
 				s.setLeft(s.getLeft() + 1);
 				HomeUI.setStats(s);
+				
+				s.saveToFile();
 				
 				HomeUI.hideGame();
 				HomeUI.showHome();
@@ -391,10 +409,6 @@ public class GameUI extends JFrame implements Serializable {
 		textFooter.setBounds(5, 515, 424, 35);
 		textFooter.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(textFooter);
-		
-		JLabel lblNewLabel = new JLabel(equation.getEquation());
-		lblNewLabel.setBounds(105, 426, 200, 33);
-		contentPane.add(lblNewLabel);
 	}
 	
 	public static void addChar(Character newChar) {
@@ -687,7 +701,17 @@ public class GameUI extends JFrame implements Serializable {
 					
 					Statistics s = HomeUI.getStats();
 					s.setWon(s.getWon() + 1);
+					if (s.getWon() == 0)
+						s.setAvgGuesses((double) currentRow);
+					else
+						s.setAvgGuesses(((double)currentRow + s.getAvgGuesses()) / s.getWon());
+					Random r = new Random();
+					s.setAvgFinishTime(r.nextInt(60));
 					HomeUI.setStats(s);
+					
+					s.saveToFile();
+					
+					return;
 				}
 				
 				if (currentRow == 5) {
@@ -699,6 +723,10 @@ public class GameUI extends JFrame implements Serializable {
 					Statistics s = HomeUI.getStats();
 					s.setLost(s.getLost() + 1);
 					HomeUI.setStats(s);
+					
+					s.saveToFile();
+					
+					return;
 				}
 				
 				cursor = -1;
@@ -725,6 +753,8 @@ public class GameUI extends JFrame implements Serializable {
 				Statistics s = HomeUI.getStats();
 				s.setLeft(s.getLeft() + 1);
 				HomeUI.setStats(s);
+				
+				s.saveToFile();
 				
 				HomeUI.hideGame();
 				HomeUI.showHome();
@@ -754,9 +784,5 @@ public class GameUI extends JFrame implements Serializable {
 		textFooter.setBounds(5, 515, 424, 35);
 		textFooter.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(textFooter);
-		
-		JLabel lblNewLabel = new JLabel(equation.getEquation());
-		lblNewLabel.setBounds(105, 426, 200, 33);
-		contentPane.add(lblNewLabel);
 	}
 }
