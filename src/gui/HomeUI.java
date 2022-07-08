@@ -68,7 +68,7 @@ public class HomeUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel textHeader = new JLabel("Mýzmýz Nerdle");
+		JLabel textHeader = new JLabel("M\u0131zm\u0131z Nerdle");
 		textHeader.setBounds(97, 10, 240, 80);
 		textHeader.setFont(new Font("Tahoma", Font.BOLD, 24));
 		textHeader.setHorizontalAlignment(SwingConstants.CENTER);
@@ -84,7 +84,7 @@ public class HomeUI extends JFrame {
 		btnStart.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game = new GameUI();
+				game = new GameUI(null);
 				game.setVisible(true);
 				
 				hideHome();
@@ -97,7 +97,7 @@ public class HomeUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				File file = new File("stats.txt");
 				if (!file.exists()) {
-					JOptionPane.showMessageDialog(null, "Yarým býraktýðýnýz oyun bulunamadý.");
+					JOptionPane.showMessageDialog(null, "Yar\u0131m b\u0131rakt\u0131ÄŸ\u0131n\u0131z oyun bulunamad\u0131.");
 					return;
 				}
 				
@@ -144,7 +144,7 @@ public class HomeUI extends JFrame {
 		JButton btnStoryOfName = new JButton("?");
 		btnStoryOfName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "\"Mýzmýz Nerdle\" ismi Harry Potter evrenindeki Mýzmýz Myrtle'dan esinlenildi :)");
+				JOptionPane.showMessageDialog(null, "\"M\u0131zm\u0131z Nerdle\" ismi Harry Potter evrenindeki M\u0131zm\u0131z Myrtle'dan esinlenildi :)");
 			}
 		});
 		btnStoryOfName.setFont(new Font("Tahoma", Font.BOLD, 16));

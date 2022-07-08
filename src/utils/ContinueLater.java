@@ -35,7 +35,7 @@ public class ContinueLater implements Serializable {
 			in.close();
 			return cl;
 		} catch (IOException e) {
-			System.out.println("Dosya okuma iþleminde sýkýntý oluþtu.");
+			System.out.println("Dosya okuma i\uc59fleminde s\u0131k\u0131nt\u0131 olu\uc59ftu.");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class ContinueLater implements Serializable {
 			out.writeObject(cl);
 			out.close();
 		} catch (IOException e) {
-			System.out.println("Dosyaya yazma iþleminde sýkýntý oluþtu.");
+			System.out.println("Dosyaya yazma i\uc59fleminde s\u0131k\u0131nt\u0131 olu\uc59ftu.");
 			e.printStackTrace();
 		}
 	}
